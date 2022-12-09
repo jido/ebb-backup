@@ -12,14 +12,7 @@ Update the specified file(s) in current repository.
 If the repository does not exist, prompts for a repository name.
 If the file is not backed up yet, the file is added to the repository.
 
-*
-
-```
-ebb touch <directory...>
-```
-
-Update the files in the selected directory.
-This only includes files which are already backed up.
+When the argument is a directory, this command only affects files which are already backed up.
 
 *
 
@@ -74,10 +67,12 @@ If an ebb command attempts to modify the repository, prompts for a new branch na
 *
 
 ```
+ebb update
 ebb flow
 ```
 
 Allow updating of the current branch in the repository.
+The command can also be used to select a different branch to update from.
 
 *
 
@@ -109,14 +104,13 @@ The command also accepts file paths to display the history of specific files or 
 *
 
 ```
-ebb restore
+ebb restore <file...>
 ```
 
 Restore the files to the last backup revision in current branch.
 Lists the files that were modified since last backup and asks for confirmation.
-The command also accepts file paths to restore specific files or directories.
 
-This command only affects backed up files.
+When the argument is a directory, this command only affects backed up files.
 
 *
 
@@ -168,6 +162,7 @@ When an argument is a directory, applies the command to all its subdirectories.
 ```
 
 When an argument is a directory, applies the command to the files inside the directory instead.
+That includes files which are not backed up.
 
 *
 
@@ -208,3 +203,36 @@ Select the default answer to the prompts.
 ```
 
 Select the source branch and/or change.
+
+## Examples of use
+
+Create a repository with all the files in current directory and its subfolders
+
+```
+ebb --all touch .
+```
+
+*
+
+Restore file "Report.doc" from last backup
+
+```
+ebb restore Report.doc
+```
+
+*
+
+Move "Quarter.txt" to the current folder and back it up in the repository
+
+```
+ebb mv ../Quarter.txt .
+```
+
+*
+
+Go to the latest revision in branch "main" and replace the files in current directory and its subfolders with the files from "main"
+
+```
+ebb --from main flow
+ebb --all restore .
+```
