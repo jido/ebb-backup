@@ -62,7 +62,7 @@ ebb freeze
 ```
 
 Stop updating the current branch in the repository.
-If an ebb command attempts to modify the repository, prompts for a new branch name then switch to it.
+If an ebb command attempts to modify the repository, prompts for a new branch name then switches to it.
 
 *
 
@@ -72,7 +72,7 @@ ebb flow
 ```
 
 Allow updating of the current branch in the repository.
-The command can also be used to select a different branch to update from.
+The commands can also be used to select a different branch to update from.
 
 *
 
@@ -107,7 +107,7 @@ The command also accepts file paths to display the history of specific files or 
 ebb restore <file...>
 ```
 
-Restore the files to the last backup revision in current branch.
+Restore the file(s) to a backed up revision in current branch.
 Lists the files that were modified since last backup and asks for confirmation.
 
 When the argument is a directory, this command only affects backed up files.
