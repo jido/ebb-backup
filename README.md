@@ -71,7 +71,7 @@ ebb update
 ```
 
 Allow updating of the current branch in the repository.
-The commands can also be used to select a different branch to update from.
+The command can also be used to select a different branch to update from.
 
 *
 
@@ -115,8 +115,9 @@ Display the branches which can be updated and their relations.
 ebb restore <file...>
 ```
 
-Restore the file(s) to a backed up revision in current branch.
+Restore the file(s) to a backed up revision.
 Lists the files that were modified since last backup and asks for confirmation.
+Files missing from the repository are deleted on restore.
 
 When the argument is a directory, this command only affects backed up files.
 
@@ -194,7 +195,8 @@ Equivalent to `--tree --files`.
 --purge
 ```
 
-When deleting files, delete their history too.
+When deleting files, delete their history too. 
+When restoring files, delete the history of revisions up to the point the files are restored from.
 
 *
 
