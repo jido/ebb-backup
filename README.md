@@ -81,7 +81,7 @@ ebb merge
 ```
 
 Merge the current branch with the latest changes in the parent branch.
-The current branch changes to the parent branch.
+The current branch switches to the parent branch. If it was frozen it is allowed to update again.
 If the merge generates conflicts, prompts the user to resolve them.
 
 *
@@ -91,6 +91,7 @@ ebb edit
 ```
 
 Edit the change description of the last update in current branch.
+The command also accepts a search pattern to find an older change description for editing.
 
 *
 
@@ -150,6 +151,14 @@ If the pull generates conflicts, prompts the user to resolve them.
 ## Flags
 
 ```
+--show
+```
+
+Show what the command will do but don't perform any action.
+
+*
+
+```
 --tree
 ```
 
@@ -186,7 +195,7 @@ When deleting files, delete their history too.
 --opt-out
 ```
 
-Does not prompt to create a repository.
+Do not prompt to create a repository.
 
 *
 
@@ -222,7 +231,7 @@ ebb restore Report.doc
 
 *
 
-Move "Quarter.txt" to the current folder and back it up in the repository
+Move "Quarter.txt" to the current directory and back it up
 
 ```
 ebb mv ../Quarter.txt .
@@ -235,4 +244,12 @@ Go to the latest revision in branch "main" and replace the files in current dire
 ```
 ebb --from main flow
 ebb --all restore .
+```
+
+*
+
+List the changes that have "release-4.6" in their description
+
+```
+ebb --show edit "release-4.6"
 ```
