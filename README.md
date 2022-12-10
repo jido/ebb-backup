@@ -68,7 +68,6 @@ If an ebb command attempts to modify the repository, prompts for a new branch na
 
 ```
 ebb update
-ebb flow
 ```
 
 Allow updating of the current branch in the repository.
@@ -99,8 +98,16 @@ The command also accepts a search pattern to find an older change description fo
 ebb log
 ```
 
-Displays the history of changes.
+Display the history of changes.
 The command also accepts file paths to display the history of specific files or directories.
+
+*
+
+```
+ebb flow
+```
+
+Display the branches which can be updated and their relations.
 
 *
 
@@ -242,7 +249,7 @@ ebb mv ../Quarter.txt .
 Go to the latest revision in branch "main" and replace the files in current directory and its subfolders with the files from "main"
 
 ```
-ebb --from main flow
+ebb --from main update
 ebb --all restore .
 ```
 
@@ -252,4 +259,12 @@ List the changes that have "release-4.6" in their description
 
 ```
 ebb --show edit "release-4.6"
+```
+
+*
+
+Display the branches that can merge into "3rd-trimester" and their parents
+
+```
+ebb --from "3rd-trimester" flow
 ```
