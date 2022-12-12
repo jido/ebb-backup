@@ -71,7 +71,7 @@ ebb update
 ```
 
 Allow updating of the current branch in the repository.
-The command can also be used to select a different branch to update from.
+The command can also be used to switch to a different branch to update from.
 
 *
 
@@ -82,6 +82,8 @@ ebb merge
 Merge the current branch with the latest changes in the parent branch.
 The current branch switches to the parent branch. If it was frozen it is allowed to update again.
 If the merge generates conflicts, prompts the user to resolve them.
+
+The command can also be used to merge changes from the parent branch without switching branches.
 
 *
 
@@ -146,14 +148,18 @@ ebb push
 Push the latest changes to the repositories related by cloning.
 If the local repository is not up to date with the remote repository, prompts to pull changes.
 
+The command also accepts a remote repository location as argument.
+
 *
 
 ```
 ebb pull
 ```
 
-Pull the latest changes from the repositories related by cloning.
+Pull the latest changes from the repositories related by cloning. 
 If the pull generates conflicts, prompts the user to resolve them.
+
+The command also accepts a remote repository location as argument.
 
 
 ## Flags
@@ -221,6 +227,16 @@ Select the default answer to the prompts.
 ```
 
 Select the source branch and/or change.
+
+*
+
+```
+--sync
+```
+
+When merging, do not end current branch and just synchronise it with the parent branch.
+The current branch does not switch.
+
 
 ## Examples of use
 
