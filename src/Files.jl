@@ -2,8 +2,8 @@ module Files
     import Base.Filesystem
 
     const ebbdir = ".ebb"
-    const currentbranch = "main____1b50"
-    const sugar = "20d80639" #String(random(0x10000000:0xFFFFFFFF), 16)
+    const currentbranch = "main___21b50"
+    const sugar = "20d80639" #string(rand(0x10000000:0xFFFFFFFF), base=16)
     
     function digest(sugar, path)
         output = IOBuffer()
@@ -13,30 +13,31 @@ module Files
         end
     end
     
-    function fixedlen_name(file, digest, len)
+    function fixedlen_name(file, len)
         parts = splitext(file)
         ext = parts[2]
         extlen = length(ext)
-        if (extlen > len - 8)
-            extlen = len - 8
+        if (extlen > len - 7)
+            extlen = len - 7
             ext = Substring(ext, 1, extlen)
             while !isvalid(ext)
                 extlen = extlen - 1
                 ext = Substring(ext, 1, extlen)
             end
         end
-        prefix = SubString(parts[1], 1, min(length(parts[1]), len - extlen - 7))
+        prefix = SubString(parts[1], 1, min(length(parts[1]), len - extlen - 6))
         while (!isvalid(prefix))
             prefix = SubString(prefix, 1, length(prefix) - 1)
         end
-        copyname = rpad(prefix, len - extlen - 6, '_') * SubString(digest, 1, 6) * ext
+        random = string(rand(0x10000:0xFFFFF), base=16)
+        copyname = rpad(prefix, len - extlen - 5, '_') * random * ext
     end
 
     function addfile(path)
         hash = digest(sugar, path)
         file = basename(path)
         cd(ebbdir)
-        copyname = fixedlen_name(file, hash, 21)
+        copyname = fixedlen_name(file, 20)
         copypath = joinpath("files", copyname)
         mkpath(dirname(copypath))
         cp(joinpath("..", path), copypath, follow_symlinks=true)
