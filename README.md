@@ -264,7 +264,7 @@ ebb mv ../Quarter.txt .
 
 *
 
-Go to the latest revision in branch "main" and replace the files in current directory and its subfolders with the files from "main"
+Select "main" as the working branch and replace the files in current directory and its subfolders with the latest files from "main"
 
 ```
 ebb --from main update
