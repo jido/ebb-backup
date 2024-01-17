@@ -79,11 +79,9 @@ The command can also be used to switch to a different branch to update from.
 ebb merge
 ```
 
-Merge the current branch with the latest changes in the parent branch.
+Merge the current branch with the parent branch.
 The current branch switches to the parent branch. If it was frozen it is allowed to update again.
-If the merge generates conflicts, prompts the user to resolve them.
-
-The command can also be used to merge changes from the parent branch without switching branches.
+The parent branch receives the latest changes from current branch. If the merge generates conflicts, prompts the user to resolve them.
 
 *
 
@@ -145,8 +143,8 @@ Clone the local repository to a target location
 ebb push
 ```
 
-Push the latest changes to the repositories related by cloning.
-If the local repository is not up to date with the remote repository, prompts to pull changes.
+Push the latest changes in current branch to the repositories related by cloning.
+If the local repository is not up to date with the remote repository, prompts to pull and merge changes.
 
 The command also accepts a remote repository location as argument.
 
@@ -156,8 +154,7 @@ The command also accepts a remote repository location as argument.
 ebb pull
 ```
 
-Pull the latest changes from the repositories related by cloning. 
-If the pull generates conflicts, prompts the user to resolve them.
+Pull all the latest changes from the repositories related by cloning. 
 
 The command also accepts a remote repository location as argument.
 
@@ -234,8 +231,16 @@ Select the source branch and/or change.
 --sync
 ```
 
+If used with update or freeze, synchronise all the files with the latest revision in the selected branch.
+
 When merging, do not end current branch and just synchronise it with the parent branch.
-The current branch does not switch.
+The current branch does not switch. The parent branch is not updated.
+
+When pulling remote changes they are merged into current branch. If the merge generates conflicts, prompt to resolve them.
+
+When pushing local changes pull and merge changes from the remote repositories.
+If there are remote changes prompt to confirm the push.
+If there are merge conflicts abort the push and prompt to resolve them.
 
 
 ## Examples of use
@@ -248,14 +253,6 @@ ebb --all touch .
 
 *
 
-Restore file "Report.doc" from last backup
-
-```
-ebb restore Report.doc
-```
-
-*
-
 Move "Quarter.txt" to the current directory and back it up
 
 ```
@@ -264,11 +261,26 @@ ebb mv ../Quarter.txt .
 
 *
 
-Select "main" as the working branch and replace the files in current directory and its subfolders with the latest files from "main"
+Restore file "Report.doc" from last backup
 
 ```
-ebb --from main update
+ebb restore Report.doc
+```
+
+*
+
+Replace the files in current directory and its subfolders with the latest files from backup
+
+```
 ebb --all restore .
+```
+
+*
+
+Select "main" as the working branch and synchronise all the files on disk with that branch
+
+```
+ebb --from main --sync update
 ```
 
 *
