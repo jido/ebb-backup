@@ -204,6 +204,14 @@ When restoring files, delete the history of revisions up to the point the files 
 *
 
 ```
+--changes <number>
+```
+
+Set the number of changes the command applies back to. Default is one.
+
+*
+
+```
 --opt-out
 ```
 
@@ -269,10 +277,10 @@ ebb restore Report.doc
 
 *
 
-Replace the files in current directory and its subfolders with the latest files from backup
+Replace the files in current directory and its subfolders with the backup from one before last change
 
 ```
-ebb --all restore .
+ebb --all --changes 2 restore .
 ```
 
 *
@@ -285,10 +293,18 @@ ebb --from main --sync update
 
 *
 
-List the changes that have "release-4.6" in their description
+Edit the change descriptions that contain the text "release-4.6"
 
 ```
-ebb --show edit "release-4.6"
+ebb edit 'release-4\.6'
+```
+
+*
+
+List the last ten changes
+
+```
+ebb --show --changes 10 edit
 ```
 
 *
@@ -296,5 +312,5 @@ ebb --show edit "release-4.6"
 Display the branches that can merge into "3rd-trimester" and their parents
 
 ```
-ebb --from "3rd-trimester" flow
+ebb --from 3rd-trimester flow
 ```
