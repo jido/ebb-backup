@@ -277,7 +277,7 @@ ebb restore Report.doc
 
 *
 
-Replace the files in current directory and its subfolders with the backup from one before last change
+Replace the files in current directory and its subfolders with the backup from second to last change
 
 ```
 ebb --all --changes 2 restore .
