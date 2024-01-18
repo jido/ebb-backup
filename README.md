@@ -293,10 +293,10 @@ ebb --from main --sync update
 
 *
 
-Edit the change descriptions that contain the text "release-4.6"
+Show the change descriptions that contain the text "release-4.6"
 
 ```
-ebb edit 'release-4\.6'
+ebb --show edit 'release-4\.6'
 ```
 
 *
@@ -304,7 +304,7 @@ ebb edit 'release-4\.6'
 List the last ten changes
 
 ```
-ebb --show --changes 10 edit
+ebb --changes 10 log
 ```
 
 *
