@@ -69,14 +69,21 @@ The command also accepts a branch name as argument.
 *
 
 ```
-ebb update
+ebb unfreeze
 ```
 
 Allow updating of the current branch in the repository.
+The command also accepts a branch name as argument.
+
+*
+
+```
+ebb update
+```
+
+Start updating the current branch in the repository, equivalent to `ebb unfreeze` in its basic form.
 The command can also be used to switch to a different branch to update from.
 If a change is specified which is not the latest, prompts for a new branch name then switches to it.
-
-The command also accepts frozen branch name as argument which does not cause a switch.
 
 *
 
