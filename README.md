@@ -82,7 +82,8 @@ ebb update
 ```
 
 Start updating the current branch in the repository, equivalent to `ebb unfreeze` in its basic form.
-The command can also be used to switch to a different branch to update from.
+The command can also be used to switch to a different branch to update from. If the branch to update was frozen it gets unfrozen.
+
 If a change is specified which is not the latest, prompts for a new branch name then switches to it.
 
 *
@@ -176,8 +177,7 @@ The command also accepts a remote repository location as argument.
 ebb pull
 ```
 
-Pull all the latest changes from the repositories related by cloning. 
-
+Pull all the latest changes from the repositories related by cloning.
 The command also accepts a remote repository location as argument.
 
 
@@ -221,7 +221,9 @@ Equivalent to `--tree --files`.
 ```
 
 When deleting files, delete their history too. 
-When restoring files, delete the history of revisions up to the point the files are restored from.
+When restoring files, delete the history of later revisions up to the point the files are restored from.
+
+When updating from a past revision, delete all newer revisions. It saves from creating a new branch.
 
 *
 
@@ -230,6 +232,9 @@ When restoring files, delete the history of revisions up to the point the files 
 ```
 
 Set the number of changes the command applies back to. Default is one.
+
+When the command is applied to a path, only counts changes which involve that path.
+The `ebb log` command is used to display a history of changes for specific paths.
 
 *
 
