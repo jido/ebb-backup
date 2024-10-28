@@ -64,6 +64,8 @@ ebb freeze
 Stop updating the current branch in the repository.
 If an ebb command attempts to modify the repository, prompts for a new branch name then switches to it.
 
+The command also accepts a branch name as argument.
+
 *
 
 ```
@@ -72,6 +74,9 @@ ebb update
 
 Allow updating of the current branch in the repository.
 The command can also be used to switch to a different branch to update from.
+If a change is specified which is not the latest, prompts for a new branch name then switches to it.
+
+The command also accepts frozen branch name as argument which does not cause a switch.
 
 *
 
@@ -112,14 +117,24 @@ Display the branches which can be updated and their relations.
 *
 
 ```
-ebb restore <file...>
+ebb restore
 ```
 
-Restore the file(s) to a backed up revision.
+Restore the files to a backed up revision.
 Lists the files that were modified since last backup and asks for confirmation.
 Files missing from the repository are deleted on restore.
 
-When the argument is a directory, this command only affects backed up files.
+This command accepts a list of files to restore back. When an argument is a directory, the command only affects backed up files.
+
+*
+
+```
+ebb diff
+```
+
+Display the differences between the current files and backed up files.
+If a file is not text its backup is copied to a temporary location so it can be compared.
+The command prompts to delete temporary files when it is done.
 
 *
 
@@ -212,6 +227,31 @@ Set the number of changes the command applies back to. Default is one.
 *
 
 ```
+--from <branch@change>
+```
+
+Select the source branch and/or change.
+
+*
+
+```
+--sync
+```
+
+If used with update, synchronise all the files with the latest revision in the branch.
+
+When merging, do not end current branch and just synchronise it with the parent branch.
+The current branch does not switch. The parent branch is not updated.
+
+When pulling remote changes they are merged into current branch. If the merge generates conflicts, prompt to resolve them.
+
+When pushing local changes pull and merge changes from the remote repositories.
+If there are remote changes prompt to confirm the push.
+If there are merge conflicts abort the push and prompt to resolve them.
+
+*
+
+```
 --opt-out
 ```
 
@@ -224,31 +264,6 @@ Do not prompt to create a repository.
 ```
 
 Select the default answer to the prompts.
-
-*
-
-```
---from <branch@change>
-```
-
-Select the source branch and/or change.
-
-*
-
-```
---sync
-```
-
-If used with update or freeze, synchronise all the files with the latest revision in the selected branch.
-
-When merging, do not end current branch and just synchronise it with the parent branch.
-The current branch does not switch. The parent branch is not updated.
-
-When pulling remote changes they are merged into current branch. If the merge generates conflicts, prompt to resolve them.
-
-When pushing local changes pull and merge changes from the remote repositories.
-If there are remote changes prompt to confirm the push.
-If there are merge conflicts abort the push and prompt to resolve them.
 
 
 ## Examples of use
