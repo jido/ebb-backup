@@ -156,6 +156,8 @@ Display the differences between the current files and backed up files.
 If a file is not text its backup is copied to a temporary location so it can be compared.
 The command prompts to delete temporary files when it is done.
 
+The command also accepts file paths to display the differences for specific files or directories.
+
 *
 
 ```
@@ -200,6 +202,16 @@ The command also accepts a remote repository location as argument.
 ```
 
 Show what the command will do but don't perform any action.
+
+*
+
+```
+--detail
+```
+
+Show in detail what the command will do but don't perform any action.
+
+When showing an edit or a merge, give the differences for each file. When displaying a log list all the affected files.
 
 *
 
