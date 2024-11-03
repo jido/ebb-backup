@@ -58,6 +58,18 @@ If the file was backed up, it is removed from the repository but its history is 
 *
 
 ```
+ebb skip <file...>
+```
+
+Skip the selected file(s).
+A skipped file is not backed up, does not appear in the output of `ebb ls` and is not included when using the `--files` option.
+
+The *_ignore.ebb* file is skipped by default and contains file patterns which should be skipped in all the branches.
+Use `ebb touch` to remove files from the skipped list.
+
+*
+
+```
 ebb freeze
 ```
 
