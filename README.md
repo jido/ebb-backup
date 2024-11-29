@@ -58,6 +58,18 @@ If the file was backed up, it is removed from the repository but its history is 
 *
 
 ```
+ebb restore <file...>
+```
+
+Restore the files to a backed up revision.
+Lists the files that were modified since last backup and asks for confirmation.
+Files missing from the repository are deleted on restore.
+
+This command accepts a list of files to restore back. When an argument is a directory, the command only affects backed up files.
+
+*
+
+```
 ebb skip <file...>
 ```
 
@@ -76,7 +88,7 @@ ebb freeze
 Stop updating the current branch in the repository.
 If an ebb command attempts to modify the repository, prompts for a new branch name then switches to it.
 
-The command also accepts a branch name as argument.
+The command also accepts a branch name as argument to freeze it.
 
 *
 
@@ -120,6 +132,18 @@ The command also accepts a search pattern to find an older change description fo
 *
 
 ```
+ebb diff
+```
+
+Display the differences between the current files and backed up files.
+If a file is not text its backup is copied to a temporary location so it can be compared.
+The command prompts to delete temporary files when it is done.
+
+The command also accepts file paths to display the differences for specific files or directories.
+
+*
+
+```
 ebb log
 ```
 
@@ -133,30 +157,6 @@ ebb flow
 ```
 
 Display the branches which can be updated and their relations.
-
-*
-
-```
-ebb restore
-```
-
-Restore the files to a backed up revision.
-Lists the files that were modified since last backup and asks for confirmation.
-Files missing from the repository are deleted on restore.
-
-This command accepts a list of files to restore back. When an argument is a directory, the command only affects backed up files.
-
-*
-
-```
-ebb diff
-```
-
-Display the differences between the current files and backed up files.
-If a file is not text its backup is copied to a temporary location so it can be compared.
-The command prompts to delete temporary files when it is done.
-
-The command also accepts file paths to display the differences for specific files or directories.
 
 *
 
