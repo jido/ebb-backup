@@ -5,7 +5,7 @@ The `ebb` project aims to provide tools to backup file revisions in a local repo
 ## Commands
 
 ```
-ebb touch <file...>
+ebb touch <file...>    (to)
 ```
 
 Update the specified file(s) in current repository.
@@ -17,7 +17,7 @@ When the argument is a directory, this command only affects files which are alre
 *
 
 ```
-ebb ls
+ebb list    (ls)
 ```
 
 List files in the current directory with their backup status.
@@ -26,7 +26,7 @@ The command also accepts file paths to list the status of specific files or dire
 *
 
 ```
-ebb cp <source...> <target>
+ebb copy <source...> <target>    (cp)
 ```
 
 Copy files from the source location(s) to the target directory.
@@ -37,7 +37,7 @@ If it is not backed up, prompts to create a repository at that location.
 *
 
 ```
-ebb mv <source...> <target>
+ebb move <source...> <target>    (mv)
 ```
 
 Move files from the source location(s) to the target directory.
@@ -49,7 +49,7 @@ If neither is backed up, prompts to create a repository at the target location.
 *
 
 ```
-ebb rm <file...>
+ebb remove <file...>    (rm)
 ```
 
 Delete the specified file(s).
@@ -58,7 +58,7 @@ If the file was backed up, it is removed from the repository but its history is 
 *
 
 ```
-ebb restore <file...>
+ebb restore <file...>    (re)
 ```
 
 Restore the files to a backed up revision.
@@ -70,7 +70,7 @@ This command accepts a list of files to restore back. When an argument is a dire
 *
 
 ```
-ebb skip <file...>
+ebb skip <file...>    (sk)
 ```
 
 Skip the selected file(s).
@@ -82,7 +82,7 @@ Use `ebb touch` to remove files from the skipped list.
 *
 
 ```
-ebb freeze
+ebb freeze    (fz)
 ```
 
 Stop updating the current branch in the repository.
@@ -93,7 +93,7 @@ The command also accepts a branch name as argument to freeze it.
 *
 
 ```
-ebb unfreeze
+ebb unfreeze    (uz)
 ```
 
 Allow updating of the current branch in the repository.
@@ -102,7 +102,7 @@ The command also accepts a branch name as argument.
 *
 
 ```
-ebb update
+ebb update    (up)
 ```
 
 Start updating the current branch in the repository, equivalent to `ebb unfreeze` in its basic form.
@@ -113,7 +113,7 @@ If a change is specified which is not the latest, prompts for a new branch name 
 *
 
 ```
-ebb merge
+ebb merge    (me)
 ```
 
 Merge the current branch with the parent branch.
@@ -123,7 +123,7 @@ The parent branch receives the latest changes from current branch. If the merge 
 *
 
 ```
-ebb edit
+ebb edit    (ed)
 ```
 
 Edit the change description of the last update in current branch.
@@ -177,7 +177,7 @@ Clone the local repository to a target location
 *
 
 ```
-ebb push
+ebb push    (ph)
 ```
 
 Push the latest changes in current branch to the repositories related by cloning.
@@ -188,7 +188,7 @@ The command also accepts a remote repository location as argument.
 *
 
 ```
-ebb pull
+ebb pull    (pl)
 ```
 
 Pull all the latest changes from the repositories related by cloning.
@@ -198,7 +198,7 @@ The command also accepts a remote repository location as argument.
 ## Flags
 
 ```
---show
+--show    (-s)
 ```
 
 Show what the command will do but don't perform any action.
@@ -206,7 +206,7 @@ Show what the command will do but don't perform any action.
 *
 
 ```
---detail
+--detail    (-d)
 ```
 
 Show in detail what the command will do but don't perform any action.
@@ -216,7 +216,7 @@ When showing an edit or a merge, give the differences for each file. When displa
 *
 
 ```
---tree
+--tree    (-t)
 ```
 
 When an argument is a directory, applies the command to all its subdirectories.
@@ -224,7 +224,7 @@ When an argument is a directory, applies the command to all its subdirectories.
 *
 
 ```
---files
+--files    (-i)
 ```
 
 When an argument is a directory, applies the command to the files inside the directory instead.
@@ -233,7 +233,7 @@ That includes files which are not backed up.
 *
 
 ```
---all
+--all    (-a)
 ```
 
 Equivalent to `--tree --files`.
@@ -252,7 +252,7 @@ When updating from a past revision, delete all newer revisions. It saves from cr
 *
 
 ```
---changes <number>
+--changes <number>    (-c)
 ```
 
 Set the number of changes the command applies back to. Default is one.
@@ -263,15 +263,16 @@ The `ebb log` command is used to display a history of changes for specific paths
 *
 
 ```
---from <branch@change>
+--from <branch@change>    (-f)
 ```
 
 Select the source branch and/or change.
+If the change is not from the selected branch, takes the branch state from when it was made.
 
 *
 
 ```
---sync
+--sync    (-y)
 ```
 
 If used with update, synchronise all the files with the latest revision in the branch.
@@ -288,7 +289,7 @@ If there are merge conflicts abort the push and prompt to resolve them.
 *
 
 ```
---opt-out
+--opt-out    (-p)
 ```
 
 Do not prompt to create a repository.
@@ -296,7 +297,7 @@ Do not prompt to create a repository.
 *
 
 ```
---auto
+--auto    (-u)
 ```
 
 Select the default answer to the prompts.
