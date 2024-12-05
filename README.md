@@ -216,7 +216,7 @@ When showing an edit or a merge, give the differences for each file. When displa
 *
 
 ```
---tree    (-t)
+--tree    (-r)
 ```
 
 When an argument is a directory, applies the command to all its subdirectories.
